@@ -43,8 +43,8 @@
     <div class="container">
 
       <figure>
-        <img id="selected-person-picture" src="persons/Pikachu.png" />
-        <figcaption id="selected-person-name">Pikachu.png</figcaption>
+        <img id="selected-person-picture" src="" />
+        <figcaption id="selected-person-name"></figcaption>
       </figure>
 
       <a class="btn btn-primary btn-large" id="chooseBtn" href="#">Choose me !</a>
@@ -56,23 +56,25 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="persons/list.js"></script>
 
     <script>
       jQuery(document).ready(function($){
 
-        $('#chooseBtn').click(function($){
-          //0 Demo handler
-          alert("Choose Me !");
+        $('#chooseBtn').click(function(){
 
-          //1 - Récupérer la liste des images du dossier "/persons"
+          //1 - Choisir au hasard un des fichiers (random)
+          numberOfPersons = personsList.length;
+          randomPersonIdx = Math.floor((Math.random()*numberOfPersons));
+          selectedPersonName = personsList[randomPersonIdx];
+          selectedPersonPicture = "persons/" + personsList[randomPersonIdx];
 
-          //2 - Choisir au hasard un des fichiers (random)
+          //2 - MAJ de selected-person-picture
+          $('#selected-person-picture').attr('src', selectedPersonPicture);
 
-          //3 - MAJ de selected-person-picture
-          //$('#selected-person-name').attr('src', "NewName.jpg");
+          //3 -  MAJ de selected-person-name
+          $('#selected-person-name').html(selectedPersonName);
 
-          //4 -  MAJ de selected-person-name
-          //$('#selected-person-name').html("NewName.jpg");
         });
 
       });
