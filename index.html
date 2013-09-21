@@ -47,6 +47,8 @@
         <figcaption id="selected-person-name"></figcaption>
       </figure>
 
+      <div id="dots"></div>
+
       <a class="btn btn-primary btn-large" id="chooseBtn" href="#">Choose me !</a>
 
     </div>
@@ -59,21 +61,56 @@
     <script src="persons/list.js"></script>
 
     <script>
+
+      var Person = function(idx, name, picture) {
+        this.idx = idx;
+        this.name = name;
+        this.picture = picture;
+      }
+
+      var getPerson = function(persons, idx) {
+          selectedPersonName = persons[idx];
+          selectedPersonPicture = "persons/" + persons[idx];          
+          return new Person(idx, selectedPersonName, selectedPersonPicture);
+      };
+
+      var displayPerson = function(person) {
+        $('#selected-person-picture').attr('src', person.picture);
+        $('#selected-person-name').html(person.name);
+      }
+
+      function addDot() {
+        $('#dots').append('.');
+      }
+
       jQuery(document).ready(function($){
 
         $('#chooseBtn').click(function(){
 
-          //1 - Choisir au hasard un des fichiers (random)
+          // 1 - Init
+          $('#dots').html("");
           numberOfPersons = personsList.length;
-          randomPersonIdx = Math.floor((Math.random()*numberOfPersons));
-          selectedPersonName = personsList[randomPersonIdx];
-          selectedPersonPicture = "persons/" + personsList[randomPersonIdx];
 
-          //2 - MAJ de selected-person-picture
-          $('#selected-person-picture').attr('src', selectedPersonPicture);
+          // 2 - Select random number
+          randomNumber = Math.floor((Math.random()*(numberOfPersons * 5)));
 
-          //3 -  MAJ de selected-person-name
-          $('#selected-person-name').html(selectedPersonName);
+          // 3 - Update pictures and name
+          var i = 0;
+          function myLoop () {
+            setTimeout(function () {
+
+              var idx = i % numberOfPersons;
+              var selectedPerson = getPerson(personsList, idx);
+              displayPerson(selectedPerson);
+              addDot();
+
+              i++;
+              if (i < randomNumber) {
+                myLoop();
+              }
+            }, 100);
+          }
+          myLoop();
 
         });
 
