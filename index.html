@@ -89,7 +89,7 @@
 
       var Person = function(idx, name, picture) {
         this.idx = idx;
-        this.name = name;
+        this.name = name.replace(/\.[^/.]+$/, ""); //Remove file extension
         this.picture = picture;
       }
 
