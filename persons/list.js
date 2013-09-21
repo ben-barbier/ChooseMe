@@ -6,5 +6,7 @@ personsList = [
   "Onix.png",
   "Pikachu.png",
   "Ronflex.png",
-  "Salameche.png"
+  "Salameche.png",
+  "Psykokwak.png",
+  "Magicarpe.png"
 ];
