@@ -1,4 +1,4 @@
 Choose Me !
 ================================
 
-Demo : http://agent-22.github.io/ChooseMe
+Demo : http://ben-barbier.github.io/ChooseMe
